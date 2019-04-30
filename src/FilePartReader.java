@@ -1,12 +1,11 @@
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class FilePartReader {
-    String filePath;
-    Integer fromLine;
-    Integer toLine;
+    private String filePath;
+    private Integer fromLine;
+    private Integer toLine;
 
     public FilePartReader() {
         this.filePath = null;
@@ -15,13 +14,18 @@ public class FilePartReader {
     }
 
     public void setup(String filePath, Integer fromLine, Integer toLine){
-        this.filePath = filePath;
+        File file = new File(filePath);
+        //if (file.exists()) {
+            this.filePath = filePath;
+        //} else {
+        //    throw new FileNotFoundException();
+       // }
         if (fromLine < 0){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("a");
         } else {
             this.fromLine = fromLine;
         }if(toLine < fromLine){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("b");
         }else {
             this.toLine = toLine;
         }
@@ -48,10 +52,10 @@ public class FilePartReader {
         return result;
     }
 
-    public static void main(String[] args) throws IOException {
+    /*public static void main(String[] args) throws IOException {
         FilePartReader reader = new FilePartReader();
-        reader.setup("src/proba.txt", 1, 2);
+        reader.setup("src/proba.txt", -1, 2);
         System.out.println(reader.read());
         System.out.println(reader.readLines());
-    }
+    }*/
 }
